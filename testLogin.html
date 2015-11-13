@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script>
+            function openCamera() {
+                window.location.href="rhcturl://localcmd/openCamera";
+            }
+            function login() {
+                var u = navigator.userAgent;
+                var isIOS = u.indexOf('iOS') > -1;
+                if (isIOS == true) {
+                    window.location.href="rhcturl://localcmd/localLogin";
+                } else {
+                    window.WebInterface.WebCallUserLogin();
+                }
+            }
+            function share() {
+                var u = navigator.userAgent;
+                var isIOS = u.indexOf('iOS') > -1;
+                if (isIOS == true) {
+                    window.location.href="rhcturl://localcmd/localShare";
+                } else {
+                    window.WebInterface.ShareActivity();
+                }
+                
+            }
+            function androidOrIos() {
+                var u = navigator.userAgent;
+                var isIOS = u.indexOf('iOS') > -1;
+                if (isIOS == true) {
+                    alert("是ios");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="login()">登录注册</button>
+        <button onclick="share()">分享</button>
+        <button onclick="androidOrIos()">系统判断</button>
+    </body>
+</html>
