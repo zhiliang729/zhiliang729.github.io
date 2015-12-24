@@ -3,6 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <script>
+            if ("wView" in window) {
+                window.wView.allowsInlineMediaPlayback = "YES";
+                window.wView.mediaPlaybackRequiresUserAction = "NO";
+            }
+        </script>
+        <script>
             function openCamera() {
                 window.location.href="rhcturl://localcmd/openCamera";
             }
@@ -38,5 +44,6 @@
         <button onclick="login()">登录注册</button>
         <button onclick="share()">分享</button>
         <button onclick="androidOrIos()">系统判断</button>
+        <video src="xxxxxx" autoplay preload></video>
     </body>
 </html>
