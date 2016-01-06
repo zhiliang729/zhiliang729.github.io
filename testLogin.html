@@ -19,32 +19,18 @@
         }
         
         function login() {
-            var u = navigator.userAgent;
-            var isIOS = u.indexOf('iOS') > -1;
-            if (isIOS == true) {
-                try {
-                    window.webkit.messageHandlers.WebCallUserLogin.postMessage();
-                } catch(err) {
-                    window.location.href="rhcturl://localcmd/WebCallUserLogin";
-                }
-            } else {
-                window.WebInterface.WebCallUserLogin();
+            try {
+                window.webkit.messageHandlers.WebCallUserLogin.postMessage();
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/WebCallUserLogin";
             }
         }
         function share() {
-            var u = navigator.userAgent;
-            var isIOS = u.indexOf('iOS') > -1;
-            if (isIOS == true) {
-                try {
-                    window.webkit.messageHandlers.ShareActivity.postMessage();
-                } catch(err) {
-                    window.location.href="rhcturl://localcmd/ShareActivity";
-                }
-                
-            } else {
-                window.WebInterface.ShareActivity();
+            try {
+                window.webkit.messageHandlers.ShareActivity.postMessage();
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/ShareActivity";
             }
-            
         }
         function androidOrIos() {
             var u = navigator.userAgent;
@@ -55,17 +41,11 @@
         }
         
         function doLinkOnClick() {
-            var u = navigator.userAgent;
-            var isIOS = u.indexOf('iOS') > -1;
-            if (isIOS == true) {
-                try {
-                    var message = 'type=1&link=2976065062';
-                    window.webkit.messageHandlers.doLinkOnClick.postMessage();
-                } catch(err) {
-                    window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
-                }
-            } else {
-                window.WebInterface.ShareActivity();
+            try {
+                var message = 'type=1&link=2976065062';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage();
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
             }
         }
         
