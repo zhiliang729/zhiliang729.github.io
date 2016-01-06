@@ -2,42 +2,85 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <script>
-            function openCamera() {
-                window.location.href="rhcturl://localcmd/openCamera";
-            }
-            function login() {
-                var u = navigator.userAgent;
-                var isIOS = u.indexOf('iOS') > -1;
-                if (isIOS == true) {
-                    window.location.href="rhcturl://localcmd/localLogin";
-                } else {
-                    window.WebInterface.WebCallUserLogin();
-                }
-            }
-            function share() {
-                var u = navigator.userAgent;
-                var isIOS = u.indexOf('iOS') > -1;
-                if (isIOS == true) {
-                    window.location.href="rhcturl://localcmd/localShare";
-                } else {
-                    window.WebInterface.ShareActivity();
-                }
-                
-            }
-            function androidOrIos() {
-                var u = navigator.userAgent;
-                var isIOS = u.indexOf('iOS') > -1;
-                if (isIOS == true) {
-                    alert("是ios");
-                }
-            }
-        </script>
     </head>
     <body>
         <button onclick="login()">登录注册</button>
         <button onclick="share()">分享</button>
+        <button onclick="doLinkOnClick()">链接</button>
         <button onclick="androidOrIos()">系统判断</button>
+        <button onclick="alertShow">alert</button>
+        <button onclick="confirmShow">confirm</button>
+        <button onclick="promptShow">prompt</button>
+        <a href="http://www.baidu.com/">百度</a>
         <audio src="./music/The song in memory.mp3" autoplay preload></audio>
+        
+        <script type="text/javascript">
+        function openCamera() {
+            window.location.href="rhcturl://localcmd/openCamera";
+        }
+        
+        function login() {
+            var u = navigator.userAgent;
+            var isIOS = u.indexOf('iOS') > -1;
+            if (isIOS == true) {
+                try {
+                    window.webkit.messageHandlers.WebCallUserLogin.postMessage();
+                } else {
+                    window.location.href="rhcturl://localcmd/WebCallUserLogin";
+                }
+            } else {
+                window.WebInterface.WebCallUserLogin();
+            }
+        }
+        function share() {
+            var u = navigator.userAgent;
+            var isIOS = u.indexOf('iOS') > -1;
+            if (isIOS == true) {
+                try {
+                    window.webkit.messageHandlers.ShareActivity.postMessage();
+                } else {
+                    window.location.href="rhcturl://localcmd/ShareActivity";
+                }
+                
+            } else {
+                window.WebInterface.ShareActivity();
+            }
+            
+        }
+        function androidOrIos() {
+            var u = navigator.userAgent;
+            var isIOS = u.indexOf('iOS') > -1;
+            if (isIOS == true) {
+                alert("是ios");
+            }
+        }
+        
+        function doLinkOnClick() {
+            var u = navigator.userAgent;
+            var isIOS = u.indexOf('iOS') > -1;
+            if (isIOS == true) {
+                try {
+                    var message = 'type=1&link=2976065062';
+                    window.webkit.messageHandlers.doLinkOnClick.postMessage();
+                } else {
+                    window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
+                }
+            } else {
+                window.WebInterface.ShareActivity();
+            }
+        }
+        
+        function alertShow() {
+            alert('显示alert');
+        }
+        
+        function confirmShow() {
+            var confirmed = confirm('OK?');
+        }
+        
+        function promptShow() {
+            var person = prompt('请输入姓名', '你的名字');
+        }
+        </script>
     </body>
 </html>
