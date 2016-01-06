@@ -25,7 +25,7 @@
             if (isIOS == true) {
                 try {
                     window.webkit.messageHandlers.WebCallUserLogin.postMessage();
-                } catch {
+                } catch(err) {
                     window.location.href="rhcturl://localcmd/WebCallUserLogin";
                 }
             } else {
@@ -38,7 +38,7 @@
             if (isIOS == true) {
                 try {
                     window.webkit.messageHandlers.ShareActivity.postMessage();
-                } catch {
+                } catch(err) {
                     window.location.href="rhcturl://localcmd/ShareActivity";
                 }
                 
@@ -62,7 +62,7 @@
                 try {
                     var message = 'type=1&link=2976065062';
                     window.webkit.messageHandlers.doLinkOnClick.postMessage();
-                } catch {
+                } catch(err) {
                     window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
                 }
             } else {
