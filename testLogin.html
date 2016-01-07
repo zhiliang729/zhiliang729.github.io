@@ -20,14 +20,14 @@
         
         function login() {
             try {
-                window.webkit.messageHandlers.WebCallUserLogin.postMessage();
+                window.webkit.messageHandlers.WebCallUserLogin.postMessage("");
             } catch(err) {
                 window.location.href="rhcturl://localcmd/WebCallUserLogin";
             }
         }
         function share() {
             try {
-                window.webkit.messageHandlers.ShareActivity.postMessage();
+                window.webkit.messageHandlers.ShareActivity.postMessage("");
             } catch(err) {
                 window.location.href="rhcturl://localcmd/ShareActivity";
             }
@@ -45,7 +45,7 @@
         function doLinkOnClick() {
             try {
                 var message = 'type=1&link=2976065062';
-                window.webkit.messageHandlers.doLinkOnClick.postMessage();
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
                 window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
             }
