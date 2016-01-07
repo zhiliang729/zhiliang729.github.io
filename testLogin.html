@@ -1,7 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Hello</title>
+        
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+        
+        body {
+            width: 95%;
+            margin: 50px auto;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+        }
+        
+        p {
+            margin-top: 2em;
+        }
+        </style>
     </head>
     <body>
         <button onclick="login()">登录注册</button>
@@ -20,6 +41,7 @@
         
         function login() {
             try {
+<!--                postMessage参数不可谓空-->
                 window.webkit.messageHandlers.WebCallUserLogin.postMessage("");
             } catch(err) {
                 window.location.href="rhcturl://localcmd/WebCallUserLogin";
@@ -27,6 +49,7 @@
         }
         function share() {
             try {
+<!--                postMessage参数不可谓空-->
                 window.webkit.messageHandlers.ShareActivity.postMessage("");
             } catch(err) {
                 window.location.href="rhcturl://localcmd/ShareActivity";
@@ -44,6 +67,7 @@
         
         function doLinkOnClick() {
             try {
+<!--                postMessage参数不可谓空-->
                 var message = 'type=1&link=2976065062';
                 window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
