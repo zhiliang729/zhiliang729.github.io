@@ -59,7 +59,8 @@
         function shareurl() {
             try {
 <!--                postMessage参数不可谓空-->
-                window.webkit.messageHandlers.ShareActivity.postMessage(link:"http://www.baidu.com/");
+                var message = 'link=http://www.baidu.com/';
+                window.webkit.messageHandlers.ShareActivity.postMessage(message);
             } catch(err) {
                 window.location.href="rhcturl://localcmd/ShareActivity?link=http://www.baidu.com/";
             }
