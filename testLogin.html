@@ -5,7 +5,7 @@
         <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        
+        <title>Hello world</title>
         <style>
             * {
                 margin: 0;
@@ -59,10 +59,10 @@
         function shareurl() {
             try {
 <!--                postMessage参数不可谓空-->
-                var message = 'link=http://www.baidu.com/';
+                var message = 'title=&link=http://www.baidu.com/&image=https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png&desc=hello';
                 window.webkit.messageHandlers.ShareActivity.postMessage(message);
             } catch(err) {
-                window.location.href="rhcturl://localcmd/ShareActivity?link=http://www.baidu.com/";
+                window.location.href="rhcturl://localcmd/ShareActivity?title=&link=http://www.baidu.com/&image=https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png&desc=hello";
             }
         }
         function androidOrIos() {
