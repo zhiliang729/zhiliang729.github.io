@@ -26,6 +26,7 @@
     <body>
         <button onclick="login()">登录注册</button>
         <button onclick="share()">分享</button>
+        <button onclick="shareurl()">分享url</button>
         <button onclick="doLinkOnClick()">链接</button>
         <button onclick="androidOrIos()">系统判断</button>
         <button onclick="alertShow()">alert</button>
@@ -52,6 +53,15 @@
                 window.webkit.messageHandlers.ShareActivity.postMessage("");
             } catch(err) {
                 window.location.href="rhcturl://localcmd/ShareActivity";
+            }
+        }
+        
+        function shareurl() {
+            try {
+<!--                postMessage参数不可谓空-->
+                window.webkit.messageHandlers.ShareActivity.postMessage("");
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/ShareActivity?link=http://www.baidu.com/";
             }
         }
         function androidOrIos() {
