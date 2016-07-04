@@ -28,27 +28,25 @@
         <script type="text/javascript">
         
         
-        function getCookie(c_name)
+        function getCookie()
         {
-            if (document.cookie.length>0)
-            {
-                c_start=document.cookie.indexOf(c_name + "=")
-                if (c_start!=-1)
-                { 
-                    c_start=c_start + c_name.length+1 
-                    c_end=document.cookie.indexOf(";",c_start)
-                    if (c_end==-1) c_end=document.cookie.length
-                    return unescape(document.cookie.substring(c_start,c_end))
-                } 
-            }
-            return ""
+            var aCookie = document.cookie.split(";");  
+            var re = '';  
+            for (var i = 0; i < aCookie.length; i++) {  
+                var aCrumb = aCookie[i].split("=");  
+                if(aCrumb[0].toString().Trim()=='order_list'){  
+                    continue;  
+                }  
+                re += (aCrumb[0] + " = " + aCrumb[1] + '\n\n');  
+            }  
+            return re
         }
         
         document.write("<p>UserAgent: ")
         document.write(navigator.userAgent + "</p>")
         document.write("<br>")
         document.write("<p>Cookies: ")
-        document.write(document.cookie) + "</p>")
+        document.write(getCookie() + "</p>")
         document.write("<br>")
         </script>
         <button onclick="login()">登录注册</button>
