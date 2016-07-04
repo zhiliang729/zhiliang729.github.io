@@ -24,6 +24,32 @@
         </style>
     </head>
     <body>
+        
+        <script type="text/javascript">
+        
+        
+        function getCookie(c_name)
+        {
+            if (document.cookie.length>0)
+            {
+                c_start=document.cookie.indexOf(c_name + "=")
+                if (c_start!=-1)
+                { 
+                    c_start=c_start + c_name.length+1 
+                    c_end=document.cookie.indexOf(";",c_start)
+                    if (c_end==-1) c_end=document.cookie.length
+                    return unescape(document.cookie.substring(c_start,c_end))
+                } 
+            }
+            return ""
+        }
+        
+        document.write("<p>UserAgent: ")
+        document.write(navigator.userAgent + "</p>")
+        document.write("<br>")
+        document.write("<p>Cookies: ")
+        document.wirte(getCookie("session_id") + "</p>")
+        </script>
         <button onclick="login()">登录注册</button>
         <button onclick="share()">分享</button>
         <button onclick="shareurl()">分享url</button>
@@ -34,6 +60,7 @@
         <button onclick="promptShow()">prompt</button>
         <a href="http://www.baidu.com/">百度</a>
         <a href="rhcthothuati://default">打开热门话题app</a>
+        <br>
         
         <script type="text/javascript">
         function openCamera() {
