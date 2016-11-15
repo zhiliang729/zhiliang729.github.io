@@ -52,11 +52,12 @@
         
         <br>
         <h1>页面跳转</h1>
-        <button onclick="toTopic()">文章页：http://topic_id:2976065848</button><br>
-        <button onclick="toNode()">话题页：http://node_id:2976064224</button><br>
-        <button onclick="toNodeSpecial()">话题专题：http://node_special_id:2976064359</button><br>
-        <button onclick="toTopicSpecial()">文章专题：http://topic_special_id:2976064369</button><br>
-        
+        <button onclick="toTopic()">文章页：2976065848</button><br>
+        <button onclick="toNode()">话题页：2976064224</button><br>
+        <button onclick="toNodeSpecial()">话题专题：2976064359</button><br>
+        <button onclick="toTopicSpecial()">文章专题：2976064369</button><br>
+        <button onclick="toChat()">闪聊：2976064103</button><br>
+        <button onclick="toUser()">用户：2976064383</button><br>
         
         <br>
         
@@ -114,6 +115,26 @@
                 window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
                 window.location.href="rhcturl://localcmd/doLinkOnClick?type=5&link=2976064369";
+            }
+        }
+            
+            function toChat() {
+                try {
+<!--                postMessage参数不可谓空-->
+                var message = 'type=8&link=2976064103';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=8&link=2976064103";
+            }
+        }
+            
+            function toUser() {
+                try {
+<!--                postMessage参数不可谓空-->
+                var message = 'type=9&link=2976064383';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
+            } catch(err) {
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=9&link=2976064383";
             }
         }
             
