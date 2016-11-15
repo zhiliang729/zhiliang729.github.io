@@ -50,6 +50,16 @@
         document.write("<br>")
         </script>
         
+        <br>
+        <h1>页面跳转</h1>
+        <button onclick="toTopic()">文章页：http://topic_id:2976065848</button><br>
+        <button onclick="toNode()">话题页：http://node_id:2976064224</button><br>
+        <button onclick="toNodeSpecial()">话题专题：http://node_special_id:2976064359</button><br>
+        <button onclick="toTopicSpecial()">文章专题：http://topic_special_id:2976064369</button><br>
+        
+        
+        <br>
+        
         <button onclick="login()">登录注册</button>
         <button onclick="share()">分享</button>
         <button onclick="shareurl()">分享url</button>
@@ -65,6 +75,44 @@
         function openCamera() {
             window.location.href="rhcturl://localcmd/openCamera";
         }
+            
+            function toTopic() {
+            try {
+<!--                postMessage参数不可谓空-->
+                window.webkit.messageHandlers.WebToTopic.postMessage("");
+            } catch(err) {
+                window.location.href="http://topic_id:2976065848";
+            }
+        }
+           
+            function toNode() {
+            try {
+<!--                postMessage参数不可谓空-->
+                window.webkit.messageHandlers.WebToNode.postMessage("");
+            } catch(err) {
+                window.location.href="http://node_id:2976064224";
+            }
+        }
+            
+            function toNodeSpecial() {
+            try {
+<!--                postMessage参数不可谓空-->
+                window.webkit.messageHandlers.WebToNodeSpecial.postMessage("");
+            } catch(err) {
+                window.location.href="http://node_special_id:2976064359";
+            }
+        }
+           
+            
+            function toTopicSpecial() {
+            try {
+<!--                postMessage参数不可谓空-->
+                window.webkit.messageHandlers.WebToTopicSpecial.postMessage("");
+            } catch(err) {
+                window.location.href="http://topic_special_id:2976064369";
+            }
+        }
+            
         
         function login() {
             try {
