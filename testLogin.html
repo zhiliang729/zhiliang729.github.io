@@ -79,37 +79,41 @@
             function toTopic() {
             try {
 <!--                postMessage参数不可谓空-->
-                window.webkit.messageHandlers.WebToTopic.postMessage("");
+                var message = 'type=1&link=2976065062';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
-                window.location.href="http://topic_id:2976065848";
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=1&link=2976065062";
             }
         }
            
             function toNode() {
-            try {
+                try {
 <!--                postMessage参数不可谓空-->
-                window.webkit.messageHandlers.WebToNode.postMessage("");
+                var message = 'type=4&link=2976064224';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
-                window.location.href="http://node_id:2976064224";
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=4&link=2976064224";
             }
         }
             
             function toNodeSpecial() {
-            try {
+                try {
 <!--                postMessage参数不可谓空-->
-                window.webkit.messageHandlers.WebToNodeSpecial.postMessage("");
+                var message = 'type=6&link=2976064359';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
-                window.location.href="http://node_special_id:2976064359";
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=6&link=2976064359";
             }
         }
            
             
             function toTopicSpecial() {
-            try {
+                try {
 <!--                postMessage参数不可谓空-->
-                window.webkit.messageHandlers.WebToTopicSpecial.postMessage("");
+                var message = 'type=5&link=2976064369';
+                window.webkit.messageHandlers.doLinkOnClick.postMessage(message);
             } catch(err) {
-                window.location.href="http://topic_special_id:2976064369";
+                window.location.href="rhcturl://localcmd/doLinkOnClick?type=5&link=2976064369";
             }
         }
             
