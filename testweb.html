@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>客户端联调</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <style>
+        li{
+            margin: 10px 0;
+        }
+        span{
+            display: inline-block;
+            margin: 10px 0;
+            line-height: 25px;
+        }
+        input{
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="page-group" id="app">
+    <a id="aa">测试</a>
+    <ul>
+        <li>
+            <a href="tataufo://holiday#activity_id={{activity_id}} ">活动</a>
+
+            </br>
+            <span>
+                输入活动ID:<input type="text" v-model="activity_id">
+            </span>  </br>
+            <span>
+                跳转url: holiday
+            </span></br>
+             <span>
+                跳转参数: activity_id
+            </span>
+        </li>
+        <li>
+            <a href="tataufo://share#title=测试分享的标题&content=测试分享的内容&imgurl=http://imagecloud.tataufo.com/content/266910a7db47131bf0f3a38a27cc9f43.jpg&shareurl=http://www.tataufo.com">分享</a></br>
+            <span>
+                跳转url: share
+            </span></br>
+             <span>
+                跳转参数: title(测试分享的标题) content(测试分享的内容) imgurl(分享图片ID) shareurl(分享页面url)
+            </span>
+        </li>
+        <li>
+            <a href="tataufo://profile#userid="{{userid}}>profile页</a></br>
+             <span>
+                userid:<input type="text" v-model="userid">
+            </span>  </br>
+            <span>
+                跳转url: profile
+            </span></br>
+             <span>
+                跳转参数: userid
+            </span>
+        </li>
+        <li>
+            <a href="tataufo://photo#[isMore]0[watermark]0">拍照单张</a></br>
+            <a href="tataufo://photo#[isMore]1[watermark]1">从相册选取多张加水印</a></br>
+             <span>
+                跳转url: photo
+            </span></br>
+             <span>
+                跳转参数: isMore(0:单张 )watermark(0:无水印)
+            </span></br>
+            <span>
+                回调: return_photo_url 返回值: 图片url
+            </span>
+            <span v-for="i in license_url">
+                <img :src="qiniu_domain+i.url+'?imageView2/0/w/100/h/100'" alt="">
+            </span>
+        </li>
+        <li>
+            <a href="tataufo://address">通讯录权限状态</a></br>
+            <a href="tataufo://address#[onload]1">重新获取通讯录权限</a></br>
+             <span>
+                跳转url: address(通讯录权限状态)
+            </span></br>
+             <span>
+                跳转参数: onload(1:重新获取通讯录权限)
+            </span></br>
+            <span>
+                回调: return_address_admin 返回值: 0 没有授过权 2 拒绝 1 同意 return_address_onload（1:成功）
+            </span>
+            <span v-if="address_admin == 1"> 已经授权 可以调用return_address_onload</span>
+            <span v-if="address_admin == 0"> 没有授过权 </span>
+            <span v-if="address_admin == 2"> 已经拒绝 </span>
+            <span v-if="address_onload == 1"> 通讯录上传成功 </span>
+            <span v-if="address_onload == 0"> 通讯录上传失败 </span>
+        </li>
+        <li>
+            <a href="tataufo://back#">返回</a></br>
+             <span>
+                跳转url: back
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://video_record#[index]2">闪拍视频</a></br>
+            <a href="tataufo://video_record#[index]1">普通视频</a></br>
+             <span>
+                跳转url: photo
+            </span></br>
+             <span>
+                跳转参数: isMore(0:单张 )watermark(0:无水印)
+            </span></br>
+            <span>
+                回调: return_id 返回值: content_id
+            </span>
+            <span v-if="video_record_content_id == -1">失败</span>
+            <span v-else>{{video_record_content_id}}</span>
+        </li>
+        <li>下面是5.2.5 新增
+        </li>
+        <li>
+            <a href="tataufo://flashchat#[roomid]507">闪聊</a></br>
+              <span>
+                room_id:<input type="text" v-model="flashroom_room_id">
+            </span>  </br>
+             <span>
+                跳转url: flashroom
+            </span></br>
+             <span>
+                跳转参数: roomid
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://videolist">视频列表</a></br>
+             <span>
+                跳转url: videolist
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://video_play#[content_id]{{video_play_content_id}}">视频播放</a></br>
+             <span>
+                content_id:<input type="text" v-model="video_play_content_id">
+            </span>  </br>
+             <span>
+                跳转url: video_play
+            </span></br>
+             <span>
+                跳转参数: content_id
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://topic#[tipic_id]{{tipic_id}}">话题</a></br>
+             <span>
+                tipic_id:<input type="text" v-model="tipic_id">
+            </span>  </br>
+             <span>
+                跳转url: topic
+            </span></br>
+             <span>
+                跳转参数: tipic_id
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://contentlist">帖子列表(有料)</a></br>
+             <span>
+                跳转url: contentlist
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://create_content">发帖</a></br>
+             <span>
+                跳转url: create_content
+            </span></br>
+             <span>
+                回调: return_content_info 返回值: obj{ topic_id:topic_id, body:body, photo_url:photo_url,}
+            </span>
+            <span>
+                topic_id:{{create_content_topic_id}}   body:{{create_content_body}}  photo_url:{{create_content_photo_url}}
+            </span>
+
+
+        </li>
+        <li>
+            <a href="tataufo://content#[content_id]{{content_content_id}}">帖子详情(帖子)</a></br>
+             <span>
+                content_content_id:<input type="text" v-model="content_content_id">
+            </span>  </br>
+            <a href="tataufo://content#[content_tipic_id]">帖子详情(话题)</a></br>
+             <span>
+                content_tipic_id:<input type="text" v-model="content_tipic_id">
+            </span>  </br>
+             <span>
+                跳转url: create_content
+            </span></br>
+            <span>
+                跳转参数: tipic_id content_id
+            </span></br>
+        </li>
+        <li>
+            <a href="tataufo://tab#[index]{{tab_index}}">tab</a></br>
+             <span>
+                tab_index:<input type="text" v-model="tab_index">
+            </span>  </br>
+             <span>
+                跳转url: tab
+            </span></br>
+            <span>
+                跳转参数: index
+            </span></br>
+        </li>
+        <li>
+            <a href="http://tataufo.com/download" id="openApp">打开或下载(微信禁止了universal link 需要在浏览器中打开)</a>
+
+        </li>
+    </ul>
+</div>
+<script type='text/javascript' src='http://imagecloud.tataufo.com/oam/o_1apcfqg3t49711hd53ndhekgre/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://imagecloud.tataufo.com/oam/o_1apcfri61ot61rliagsg4i1jm2j/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://imagecloud.tataufo.com/oam/o_1apcfss53khn1v1cdh3fc1ge5o/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://imagecloud.tataufo.com/oam/o_1apcftn1fh39btf1c671vshcot/vue.min.js' charset='utf-8'></script>
+<script src="/static/activity1/js/index.js"></script>
+<script>
+    //回调测试
+
+
+    //拍照回调
+    function return_photo_url(str_url){
+        var arr_url = str_url.split(',');
+        var arr= []
+        for(var i in arr_url){
+            arr.push({
+               url: i
+            }) ;
+        }
+        vm.license_url = arr
+    }
+    //通讯录权限
+    function return_address_admin(number) {
+        if (number == 1) {
+          vm.address_admin=1
+        } else if(number == 0){
+            vm.address_admin=0
+        }else if(number == 2){
+            vm.address_admin=2
+        }
+    }
+    function return_address_onload(number) {
+        if (number == 1) {
+            vm.address_onload=1
+        }else {
+            vm.address_onload =0;
+        }
+    }
+    //视频回调
+    function return_id(id) {
+        if (id == -1) {
+            vm.video_record_content_id = id
+        } else{
+            vm.video_record_content_id = id
+        }
+    }
+
+function return_content_info (obj){
+    vm.create_content_topic_id=obj.topic_id;
+    vm.create_content_body=obj.body;
+    vm.create_content_photo_url=obj.photo_url
+}
+    window.vm = new Vue({
+        el: '#app',
+        data: {
+            qiniu_domain:"http://7xo9gf.com1.z0.glb.clouddn.com/",
+            activity_id:'',
+            userid:'',
+            license_url:[],
+            address_admin:'',
+            address_onload:'',
+            video_record_content_id:'',
+            flashroom_room_id:'',
+            video_play_content_id:'',
+            tipic_id:'',
+            create_content_topic_id:'',
+            create_content_body:'',
+            create_content_photo_url:'',
+            content_content_id:'',
+            content_tipic_id:'',
+            tab_index:'',
+            roomid:''
+        },
+        ready:function(){
+
+        },
+        methods: {
+
+        }
+    });
+    //    params.uid = '09ab9d2f8978420887aea4bfc9df0af6';
+</script>
+<script type="text/javascript">
+    document.getElementById('openApp').onclick = function(e){
+        // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为
+        // 否则打开a标签的href链接
+        var ifr = document.createElement('iframe');
+        ifr.src = 'tataufo://';
+        ifr.style.display = 'none';
+        document.body.appendChild(ifr);
+        window.setTimeout(function(){
+            document.body.removeChild(ifr);
+        },3000)
+    };
+</script>
+</body>
+</html>
+
