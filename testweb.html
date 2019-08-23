@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,6 +206,9 @@
             </span></br>
         </li>
         <li>
+            <a href="tataufo://ttcbind">ttc bind</a></br>
+        </li>
+        <li>
             <a href="http://tataufo.com/download" id="openApp">打开或下载(微信禁止了universal link 需要在浏览器中打开)</a>
 
         </li>
@@ -219,8 +221,6 @@
 <script src="/static/activity1/js/index.js"></script>
 <script>
     //回调测试
-
-
     //拍照回调
     function return_photo_url(str_url){
         var arr_url = str_url.split(',');
@@ -257,7 +257,6 @@
             vm.video_record_content_id = id
         }
     }
-
 function return_content_info (obj){
     vm.create_content_topic_id=obj.topic_id;
     vm.create_content_body=obj.body;
@@ -285,10 +284,8 @@ function return_content_info (obj){
             roomid:''
         },
         ready:function(){
-
         },
         methods: {
-
         }
     });
     //    params.uid = '09ab9d2f8978420887aea4bfc9df0af6';
